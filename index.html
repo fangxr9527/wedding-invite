@@ -204,6 +204,17 @@
   .thanks p{margin:0;font-size:12.5px;line-height:2;letter-spacing:.1em;color:rgba(240,246,232,.72)}
   .rsvp .fine{margin-top:18px;text-align:center;font-size:10.5px;letter-spacing:.16em;color:rgba(240,246,232,.38)}
 
+  .rsvp-cta{max-width:420px;margin:0 auto;text-align:center}
+  .rsvp-btn{display:block;padding:16px;background:linear-gradient(180deg,#B4C7AC,#8FA68B);
+    color:#1D3125;font-family:var(--serif);font-size:14px;letter-spacing:.4em;text-indent:.4em;
+    border-radius:2px;transition:filter .25s,transform .25s}
+  .rsvp-btn:hover{filter:brightness(1.05)}
+  .rsvp-btn:active{transform:translateY(1px)}
+  .rsvp-alt{margin-top:16px;font-size:11.5px;letter-spacing:.14em;color:rgba(240,246,232,.55)}
+  .rsvp-qr{display:none;flex-direction:column;align-items:center;gap:14px}
+  .rsvp-qr img{width:196px;height:196px;background:#fff;padding:10px;border-radius:6px}
+  .rsvp-qr div{font-size:11px;letter-spacing:.3em;color:rgba(240,246,232,.78)}
+
   /* ============ 页脚 ============ */
   .foot{background:var(--green-900);color:rgba(240,246,232,.62);text-align:center;
     padding:44px 30px 42px;font-family:var(--kai);letter-spacing:.3em;font-size:11.5px;line-height:2.4}
@@ -248,6 +259,8 @@
   body.capture .cover{height:812px;min-height:812px}
   body.capture .fab,body.capture .toast{display:none}
   body.capture .scroll-cue,body.capture .foot .tiny{display:none}
+  body.capture .rsvp-cta{display:none}
+  body.capture .rsvp-qr{display:flex}
 </style>
 </head>
 <body>
@@ -433,40 +446,14 @@
       您的到来，是我们最好的礼物。
     </p>
 
-    <form id="rsvpForm" autocomplete="off">
-      <div class="field">
-        <label for="name">您的姓名</label>
-        <input id="name" name="name" placeholder="请输入姓名" required />
-      </div>
-      <div class="row">
-        <div class="field">
-          <label for="people">出席人数</label>
-          <select id="people" name="people">
-            <option>1 位</option>
-            <option>2 位</option>
-            <option>3 位</option>
-            <option>4 位及以上</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="attend">是否出席</label>
-          <select id="attend" name="attend">
-            <option>欣然赴约</option>
-            <option>遗憾缺席</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
-        <label for="msg">想说的话（选填）</label>
-        <textarea id="msg" name="msg" placeholder="写下一句祝福吧"></textarea>
-      </div>
-      <button class="submit" type="submit">确 认 回 复</button>
-      <div class="fine">回执仅保存在本机 · 也可直接微信告知新郎新娘</div>
-    </form>
+        <div class="rsvp-cta">
+      <a class="rsvp-btn" href="https://docs.qq.com/form/page/DZFRjWE55dWtpbXFy" target="_blank" rel="noopener">填 写 赴 宴 回 执</a>
+      <div class="rsvp-alt">也可以直接微信告知新郎新娘</div>
+    </div>
 
-    <div class="thanks" id="thanks">
-      <div class="big">感 谢 您 的 回 复</div>
-      <p id="thanksText">期待在 12 月 17 日，与您共赴这场欢喜。</p>
+    <div class="rsvp-qr">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAHWAQMAAADw1DoZAAAABlBMVEUdMSX///8RPECiAAADJklEQVR42u2dXW6EMAyErXIAjsTV90gcYKUUHP8krKoE+tZ+PKRL2XlBI3s8drJSHl9vAQsWLFiwYP8A9i12rcfN6/irj2Tbj49bPD0/6VO9TtiXPL/A/m2sNMR8rSdzjuWg1FJ0OW4Php2Ey9ugI+8Z7IBXGqWUNEYkY1gpu4jHMGedPoVXYG/w6kh3sZxBq35ljywJr8A+5JVGKaXUmfjOpQYteAX2F/oqGaYiqwSRglzoK7BzvPJ60FXVzwv1INhZXnW2Q9aDojlP86DLrf7LvGewQ14Zh8y1CovB2KRc08pQ5dYCr8BO63b7tJTLbeVauKZaLcIrsDO63T0FqwLdDTWLIdSXind0O9i5PFjLvhqHagr0tCjplYqEEY9uBzuv281iMGPBJPtuS23mCD4D2Bu8Cks0hXq67GZASGd2wSuwE3nQiz3rMZcwG6pQjxjmpju8AjvW7Zbzqn8VTpZI47JnCqQeBDudB11a5W32cfK2Ki10O9jJeLW585mCyurBsLOsRkz+wSuwI31lrlU4Wetb0l2oCj4GHcLE4j2DHemrtR1pdrVePrhWIjfCK7AT9aCTyytDD1Ct5gq5taLbwU7nQc90vfcQzZytG4GHV2DHedC6zTEMmn2cquXj6bYv+Fdg5+NVpLucZS+NxeDfNu+BPAh2hlc5tmA5T5Nh41WlBy9CPQh2Ng+Gqsp2YeMuWIOnH+6DV2CH8erlHmizNGMzqb6E+SuwN/JgN3oVESmGGtJqb2aTec9ghz6DSNMkjK3OGaDcDWXfBNhpfZVnfHj3ZindxsLStJzZlwr2Tj34eUhDKbkBR8I6DTrynsEOeRUHyOh/M2h5o7k5toj+INjJPJjKvITzGS3n6zlZ6Hawt+rBmGfYMkDtvVea5ii8AjuOV+J6/OVj7GaEurt1PakBXoEd8qo5T6Z0RWFO+OWWVPQV2FleWSl4GcLKGYfLzmf8K7B3eJU7VJfYgHOZxGJeFOwDXuWOei8K44xkLxTR7WBv6qs4sSiVlp8D6Zue2TcB9nY92G7Aafbj1FHR5vx2/CuwY17xGwpgwYIFC/a/Yr8BeyQoQaXEMv0AAAAASUVORK5CYII=" alt="扫码填写回执" />
+      <div>扫 码 填 写 回 执</div>
     </div>
   </section>
 
@@ -547,31 +534,6 @@
     encodeURIComponent(hotel + " " + addr) +
     "&callnative=1&src=invite&coordinate=gaode&callapp=1";
 
-  var form = $("rsvpForm"), thanks = $("thanks");
-  form.addEventListener("submit", function (ev) {
-    ev.preventDefault();
-    var data = {
-      name: $("name").value.trim(),
-      people: $("people").value,
-      attend: $("attend").value,
-      msg: $("msg").value.trim(),
-      at: new Date().toISOString()
-    };
-    if (!data.name) { $("name").focus(); return; }
-    try {
-      var all = JSON.parse(localStorage.getItem("rsvp") || "[]");
-      all.push(data);
-      localStorage.setItem("rsvp", JSON.stringify(all));
-    } catch (e) {}
-
-    var t = $("thanksText");
-    t.innerHTML = data.attend === "欣然赴约"
-      ? data.name + "，已为您预留 " + data.people + " 座位。<br>期待 12 月 17 日与您相见。"
-      : data.name + "，虽然遗憾，祝福已收到。<br>愿我们早日再见。";
-    form.style.display = "none";
-    thanks.classList.add("on");
-    toast("回执已记录，谢谢您");
-  });
 
   var toastEl = $("toast"), toastTimer;
   function toast(msg) {
